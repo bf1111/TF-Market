@@ -15,6 +15,40 @@ Route::get('think', function () {
 
 Route::get('hello/:name', 'index/hello');
 
-return [
 
-];
+//后台管理员
+//管理员登录
+Route::post('admin/login', 'admin/admin/login');
+//中间件  判断管理员是否登录
+// Route::group('', function () {
+    //管理员添加
+    Route::post('admin/add', 'admin/admin/addAdmin');
+    //管理员退出
+    Route::get('admin/logout', 'admin/Admin/logout');
+    //管理员修改密码
+    Route::post('admin/edit', 'admin/Admin/edit');
+
+    //用户模块
+    Route::rule('admin/user/index','admin/User/usersList');
+// })->middleware('Admin');
+
+
+
+
+
+//----------前台--------------
+//-----用户
+//用户注册
+Route::post('user/register','index/User/register');
+//用户登录
+Route::post('user/login','index/User/login');
+//中间件  判断用户是否登录
+// Route::group('', function () {
+//用户退出
+Route::get('user/logout','index/User/logout');
+//用户编辑
+Route::post('user/edit','index/User/edit'); 
+//忘记密码(找回密码)
+Route::post('user/forgetreg','index/User/forgetReg');
+Route::post('user/forgetupdate','index/User/forgetUpdate');
+// })->middleware('Index');

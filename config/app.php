@@ -19,9 +19,9 @@ return [
     // 应用地址
     'app_host'               => '',
     // 应用调试模式
-    'app_debug'              => false,
+    'app_debug'              => true,
     // 应用Trace
-    'app_trace'              => false,
+    'app_trace'              => true,
     // 是否支持多模块
     'app_multi_module'       => true,
     // 入口自动绑定模块
@@ -81,7 +81,7 @@ return [
     // PATHINFO变量名 用于兼容模式
     'var_pathinfo'           => 's',
     // 兼容PATH_INFO获取
-    'pathinfo_fetch'         => ['ORIG_PATH_INFO', 'REDIRECT_PATH_INFO', 'REDIRECT_URL'],
+    'pathinfo_fetch'         => ['ORIG_PATH_INFO', 'REDIRECT_PATH_INFO', 'REDIRECT_URL','REQUEST_URI'],
     // pathinfo分隔符
     'pathinfo_depr'          => '/',
     // HTTPS代理标识
@@ -143,4 +143,10 @@ return [
     // 异常处理handle类 留空使用 \think\exception\Handle
     'exception_handle'       => '',
 
+    //发送手机验证码配置
+    //修改为您的apikey(https://www.yunpian.com)登录官网后获取
+    'apikey' => '7b3c91f7ac1852fcb3e807390ef6b715',
+    //验证码内容
+    'text_start' => '【王均峰test】您的验证码为',
+    'text_end' => '，如非本人操作请忽略。'
 ];
