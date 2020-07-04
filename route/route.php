@@ -18,7 +18,7 @@ Route::get('hello/:name', 'index/hello');
 
 //后台管理员
 //管理员登录
-Route::post('admin/login', 'admin/admin/login');
+Route::rule('admin/login', 'admin/admin/login');
 //中间件  判断管理员是否登录
 // Route::group('', function () {
     //管理员添加
