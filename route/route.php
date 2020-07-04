@@ -39,7 +39,7 @@ Route::rule('admin/login', 'admin/admin/login');
 //----------前台--------------
 //-----用户
 //用户注册
-Route::post('user/register','index/User/register');
+Route::post('user/register','index/User/register')->allowCrossDomain();
 //用户登录
 Route::post('user/login','index/User/login');
 //中间件  判断用户是否登录
