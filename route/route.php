@@ -18,7 +18,7 @@ Route::get('hello/:name', 'index/hello');
 
 //后台管理员
 //管理员登录
-Route::rule('admin/login', 'admin/admin/login');
+// Route::rule('admin/login', 'admin/admin/login');
 //中间件  判断管理员是否登录
 // Route::group('', function () {
     //管理员添加
@@ -39,7 +39,8 @@ Route::rule('admin/login', 'admin/admin/login');
 //----------前台--------------
 //-----用户
 //用户注册
-Route::post('user/register','index/User/register')->allowCrossDomain();
+Route::post('user/register','index/User/register')->allowCrossDomain();  //数据验证
+Route::post('user/regcode','index/User/useUserSendNote');  //得到手机验证码
 //用户登录
 Route::post('user/login','index/User/login');
 //中间件  判断用户是否登录

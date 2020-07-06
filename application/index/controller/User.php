@@ -292,6 +292,12 @@ class User extends Controller
         }
         $code = createCode();
         $mobile = input('post.mobile');
+        if($mobile == ""){
+            ajaxReturn(2,'请输入手机号');
+        }
+        if(!preg_match('/^1[\d]{10}/',$mobile)){
+            ajaxReturn(2,'请输入正确的手机号');
+        }
         $this->userSendNote($code, $mobile, 'mobile_code');
     }
 

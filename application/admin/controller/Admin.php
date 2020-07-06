@@ -53,7 +53,7 @@ class Admin extends Controller
             $upData['last_time'] = time();
             $upData['last_ip'] = $_SERVER['REMOTE_ADDR'];
             if ($this->adminModel->updateAdminLogin($res['id'], $upData)) {
-                ajaxReturn(0, '登录成功');
+                ajaxReturn(0, '登录成功');`
             } else {
                 ajaxReturn(2, '服务端错误');
             }
