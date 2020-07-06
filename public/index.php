@@ -12,6 +12,11 @@
 // [ 应用入口文件 ]
 namespace think;
 
+//解决跨域问题
+header('Content-Type: text/html;charset=utf-8');
+header('Access-Control-Allow-Origin:*'); // *代表允许任何网址请求
+header('Access-Control-Allow-Methods:POST,GET,OPTIONS,DELETE');
+
 // 加载基础文件
 require __DIR__ . '/../thinkphp/base.php';
 
