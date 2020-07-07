@@ -14,7 +14,7 @@ class Admin
     public function handle($request, \Closure $next)
     {
         if(empty(session('admin_name')) || empty(session('admin_id'))){
-            ajaxReturn(2,'请先登录');
+            ajaxReturn(10,'请先登录');
         }
 
         return $next($request);

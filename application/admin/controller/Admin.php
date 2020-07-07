@@ -113,17 +113,17 @@ class Admin extends Controller
         //判断新密码是否更新成功
         $code = createSalt();  //生成密码盐值
         $newpassword = md5($data['newpassword'] . $code);  //md5加密密码
-        if ($this->adminModel->updateAdminNewPas($newpassword, $code)) {
+        $data = [
+            'password' => $newpassword,
+            'code' => $code,
+            'edit_time' => time()
+        ];
+
+        //更新数据
+        if ($this->adminModel->updatePws($data)) {
             //清空session
             session('admin_name', null);
             session('admin_id', null);
-            //更新数据
-            $upData['edit_time'] = time();
-            if ($this->adminModel->updateAdminLogin($res['id'], $upData)) {
-                ajaxReturn(0, '登录成功');
-            } else {
-                ajaxReturn(2, '服务端错误');
-            }
             ajaxReturn(0, '密码更改成功');
         } else {
             ajaxReturn(2, '密码更改失败');

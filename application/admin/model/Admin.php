@@ -32,35 +32,21 @@ class Admin extends Model
         return $res;
     }
 
-    // /**
-    //  * 判断旧密码是否正确
-    //  *
-    //  * @param [type] $oldpassword  旧密码
-    //  * @return void
-    //  */
-    // public function checkAdminOldPas($oldpassword)
-    // {
-    //     //判断旧密码
-    //     $condition = ['id' => session('admin_id'), 'name' => session('admin_name'), 'password' => $oldpassword];
-    //     $res = $this->where($condition)->find();
-    //     return $res;
-    // }
-
     /**
-     * 更新密码
+     * 修改密码
      *
-     * @param [type] $newpassword  新密码
-     * @param [type] $code  新的密码盐值
+     * @param array $data  更新的数据
      * @return void
      */
-    public function updateAdminNewPas($newpassword, $code)
+    public function updatePws($data=[])
     {
-        //修改密码
+        // 修改密码
         $condition = ['id' => session('admin_id'), 'name' => session('admin_name')];
-        $data = ['password' => $newpassword, 'code' => $code];
+        // $data = ['password' => $newpassword, 'code' => $code];
         $res = $this->where($condition)->update($data);
         return $res;
     }
+
 
     /**
      * 管理员登录更新数据
