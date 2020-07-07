@@ -92,11 +92,6 @@ class Admin extends Controller
         if (!$request->isPost()) {
             ajaxReturn(2, '请求不合法');
         }
-        $data = [
-            'admin_id' => session('admin_id'),
-            'admin_name' => session('admin_name')
-        ];
-        ajaxReturn(2,'测试',$data);
 
         //验证器  验证数据
         $data = input('post.');
