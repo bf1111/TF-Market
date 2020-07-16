@@ -41,16 +41,18 @@ Route::group('', function () {
 //-----用户
 //用户注册
 Route::post('user/register', 'index/User/register')->allowCrossDomain();  //数据验证
-Route::post('user/regcode', 'index/User/useUserSendNote');  //得到手机验证码
+Route::post('user/regcode', 'index/User/useUserSendNote')->allowCrossDomain();;  //得到手机验证码
 //用户登录
 Route::post('user/login', 'index/User/login');
 //中间件  判断用户是否登录
-// Route::group('', function () {
-//用户退出
-Route::get('user/logout', 'index/User/logout');
-//用户编辑
-Route::post('user/edit', 'index/User/edit');
-//忘记密码(找回密码)
-Route::post('user/forgetreg', 'index/User/forgetReg');
-Route::post('user/forgetupdate', 'index/User/forgetUpdate');
-// })->middleware('Index');
+Route::group('', function () {
+    //用户退出
+    Route::get('user/logout', 'index/User/logout');
+    //用户编辑
+    Route::post('user/edit', 'index/User/edit');
+    //忘记密码(修改密码)
+    Route::post('user/getforgrtreg','index/User/userForgetSendNote');  //获取验证码
+    Route::post('user/forgetreg', 'index/User/forgetReg');   //验证验证码
+    Route::post('user/forgetupdate', 'index/User/forgetUpdate');   //修改密码
+})->allowCrossDomain();
+    // ->middleware('Index');

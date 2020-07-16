@@ -238,30 +238,30 @@ class User extends Controller
     public function forgetUpdate(Request $request)
     {
         //判断是否POST提交
-        if(!$request->isPost()){
-            ajaxReturn(2,'请求不合法');
+        if (!$request->isPost()) {
+            ajaxReturn(2, '请求不合法');
         }
 
         //验证器 验证数据
         $data = input('post.');
         $validate = validate('UserForget');
-        if(!$validate->scene('forgetupdate')->check($data)){
-            ajaxReturn(2,$validate->getError());
+        if (!$validate->scene('forgetupdate')->check($data)) {
+            ajaxReturn(2, $validate->getError());
         }
 
         //验证成功后更新数据
         $updateData['password'] = $data['password'];
         $updateData['edit_time'] = time();
-        $res = $this->usersModel->forgetUpdatePwd($data['mobile'],$updateData);
-        if($res){
-            ajaxReturn(0,'密码修改成功');
-        }else{
-            ajaxReturn(2,'密码修改失败');
+        $res = $this->usersModel->forgetUpdatePwd($data['mobile'], $updateData);
+        if ($res) {
+            ajaxReturn(0, '密码修改成功');
+        } else {
+            ajaxReturn(2, '密码修改失败,服务端错误');
         }
     }
 
     /**
-     * 用户找回密码发送验证码
+     * 忘记密码（找回密码 获取短信验证码）
      *
      * @param Request $request
      * @return void
@@ -292,11 +292,11 @@ class User extends Controller
         }
         $code = createCode();
         $mobile = input('post.mobile');
-        if($mobile == ""){
-            ajaxReturn(2,'请输入手机号');
+        if ($mobile == "") {
+            ajaxReturn(2, '请输入手机号');
         }
-        if(!preg_match('/^1[\d]{10}/',$mobile)){
-            ajaxReturn(2,'请输入正确的手机号');
+        if (!preg_match('/^1[\d]{10}/', $mobile)) {
+            ajaxReturn(2, '请输入正确的手机号');
         }
         $this->userSendNote($code, $mobile, 'mobile_code');
     }
@@ -332,7 +332,7 @@ class User extends Controller
                 session($sessionName, $code);  //存储session
                 ajaxReturn('0', '发送成功');
             } else {
-                ajaxReturn('2', $note['mag']);
+                ajaxReturn('2', $note['msg']);
             }
         }
     }

@@ -8,7 +8,7 @@ class Index
     {
         if(empty(session('user_name')) || empty(session('user_id')))
         {
-            ajaxReturn(2,'请先登录');
+            ajaxReturn(10,'请先登录');
         }
         return $next($request);
     }
