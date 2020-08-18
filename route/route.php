@@ -30,8 +30,8 @@ Route::group('', function () {
 
     //用户模块
     Route::rule('admin/user/index', 'admin/User/usersList');
-})->allowCrossDomain();
-// ->middleware('Admin');
+})->allowCrossDomain()
+->middleware('Admin');
 
 
 
