@@ -50,6 +50,24 @@ class ComposerAutoloaderInit5672f0497ded0dfa01b6b0681a530b8f
 
         $loader->register(true);
 
+        if ($useStaticLoader) {
+            $includeFiles = Composer\Autoload\ComposerStaticInit5672f0497ded0dfa01b6b0681a530b8f::$files;
+        } else {
+            $includeFiles = require __DIR__ . '/autoload_files.php';
+        }
+        foreach ($includeFiles as $fileIdentifier => $file) {
+            composerRequire5672f0497ded0dfa01b6b0681a530b8f($fileIdentifier, $file);
+        }
+
         return $loader;
+    }
+}
+
+function composerRequire5672f0497ded0dfa01b6b0681a530b8f($fileIdentifier, $file)
+{
+    if (empty($GLOBALS['__composer_autoload_files'][$fileIdentifier])) {
+        require $file;
+
+        $GLOBALS['__composer_autoload_files'][$fileIdentifier] = true;
     }
 }

@@ -18,7 +18,7 @@
  * @param array $data  返回数据
  * @return void
  */
-function ajaxReturn($status,$msg,$data=[])
+function ajaxReturn($status, $msg, $data = [])
 {
     header('Content-Type: application/json; charset=utf8');  //json传递
     echo json_encode([
@@ -30,13 +30,14 @@ function ajaxReturn($status,$msg,$data=[])
 }
 
 /**
- * 生成密码盐值
+ * 生成随机的字符串
  *
+ * @param integer $length  长度
  * @return void
  */
-function createSalt()
+function cShuffleStr($length = 3)
 {
-    return mt_rand(1000, 10000);
+    return bin2hex(random_bytes($length));
 }
 
 

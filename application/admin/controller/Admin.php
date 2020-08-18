@@ -73,6 +73,7 @@ class Admin extends Controller
         //清空session
         session('admin_name', null);
         session('admin_id', null);
+        session(null);
         if (empty(session('admin_name')) && empty(session('admin_id'))) {
             ajaxReturn(0, '退出成功');
         } else {
@@ -111,7 +112,7 @@ class Admin extends Controller
             ajaxReturn(2, '旧密码不正确');
         }
         //判断新密码是否更新成功
-        $code = createSalt();  //生成密码盐值
+        $code = cShuffleStr();  //生成密码盐值
         $newpassword = md5($data['newpassword'] . $code);  //md5加密密码
         $data = [
             'password' => $newpassword,
@@ -124,9 +125,9 @@ class Admin extends Controller
             //清空session
             session('admin_name', null);
             session('admin_id', null);
-            ajaxReturn(0, '密码更改成功');
+            ajaxReturn(0, '密码修改成功,请重新登录');
         } else {
-            ajaxReturn(2, '密码更改失败');
+            ajaxReturn(2, '密码修改失败');
         }
     }
 
@@ -150,7 +151,7 @@ class Admin extends Controller
         }
 
         //逻辑
-        $data['code'] = createSalt();  //密码盐值
+        $data['code'] = cShuffleStr();  //密码盐值
         $data['password'] = md5($data['password'] . $data['code']);  //密码加密
         $data['name'] = $data['username'];
         $data['created_time'] = $data['edit_time'] = time();  //生成时间戳

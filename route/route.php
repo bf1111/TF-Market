@@ -30,8 +30,8 @@ Route::group('', function () {
 
     //用户模块
     Route::rule('admin/user/index', 'admin/User/usersList');
-})->allowCrossDomain()
-    ->middleware('Admin');
+})->allowCrossDomain();
+// ->middleware('Admin');
 
 
 
@@ -51,7 +51,7 @@ Route::group('', function () {
     //用户编辑
     Route::post('user/edit', 'index/User/edit');
     //忘记密码(修改密码)
-    Route::post('user/getforgrtreg','index/User/userForgetSendNote');  //获取验证码
+    Route::post('user/getforgrtreg', 'index/User/userForgetSendNote');  //获取验证码
     Route::post('user/forgetreg', 'index/User/forgetReg');   //验证验证码
     Route::post('user/forgetupdate', 'index/User/forgetUpdate');   //修改密码
 })->allowCrossDomain();

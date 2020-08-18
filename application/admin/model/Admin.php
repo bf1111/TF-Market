@@ -38,7 +38,7 @@ class Admin extends Model
      * @param array $data  更新的数据
      * @return void
      */
-    public function updatePws($data=[])
+    public function updatePws($data = [])
     {
         // 修改密码
         $condition = ['id' => session('admin_id'), 'name' => session('admin_name')];
